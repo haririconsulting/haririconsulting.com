@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "sanity dev",
     "start": "sanity start",
-    "build": "sanity build",
+    "build": "sanity build ../frontend/public/admin",
     "version": "sanity versions",
     "types": "sanity schema extract",
     "typegen": "sanity typegen generate"

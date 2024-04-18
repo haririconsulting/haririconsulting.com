@@ -2,10 +2,10 @@
   "name": "sanity-template-remix-clean",
   "private": true,
   "scripts": {
-    "build": "cd studio && npm run build && rm -r ../frontend/public/admin ; mkdir ../frontend/public/admin && cp -r dist/* ../frontend/public/admin && cd ../frontend && npm run build",
+    "build": "cd studio && npm run build && cd ../frontend && npm run build",
     "dev": "pnpm -r dev",
     "format": "prettier --cache --write .",
-    "start": "cd frontend && npm start",
+    "start": "wrangler pages dev ./frontend/build/client",
     "typegen": "cd studio && npx npm typegen",
     "types": "cd studio && npx npm types"
   },
@@ -15,6 +15,11 @@
     ],
     "semi": false,
     "singleQuote": true
+  },
+  "dependencies": {
+    "@remix-run/cloudflare": "^2.8.1",
+    "@remix-run/cloudflare-pages": "^2.8.1",
+    "wrangler": "^3.24.0"
   },
   "devDependencies": {
     "prettier-plugin-packagejson": "2.4.14"
