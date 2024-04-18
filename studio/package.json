@@ -1,0 +1,40 @@
+{
+  "name": "sanity-template-remix-clean-studio",
+  "private": true,
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "version": "sanity versions",
+    "types": "sanity schema extract",
+    "typegen": "sanity typegen generate"
+  },
+  "dependencies": {
+    "@sanity/vision": "3.37.2",
+    "color-picker": "^0.0.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "rxjs": "7.8.1",
+    "sanity": "3.37.2",
+    "styled-components": "6.1.8"
+  },
+  "devDependencies": {
+    "@sanity/eslint-config-studio": "4.0.0",
+    "@types/lodash": "^4.17.0",
+    "@types/node": "20.8.8",
+    "@types/react": "18.2.75",
+    "eslint": "8.57.0",
+    "lodash": "^4.17.21",
+    "prettier": "3.2.5",
+    "typescript": "5.4.5"
+  },
+  "prettier": {
+    "semi": false,
+    "printWidth": 100,
+    "bracketSpacing": false,
+    "singleQuote": true
+  },
+  "engines": {
+    "node": ">= 14.18"
+  }
+}

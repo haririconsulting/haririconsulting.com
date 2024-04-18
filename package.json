@@ -1,0 +1,23 @@
+{
+  "name": "sanity-template-remix-clean",
+  "private": true,
+  "scripts": {
+    "build": "cd studio && npm run build && rm -r ../frontend/public/admin ; mkdir ../frontend/public/admin && cp -r dist/* ../frontend/public/admin && cd ../frontend && npm run build",
+    "dev": "pnpm -r dev",
+    "format": "prettier --cache --write .",
+    "start": "cd frontend && npm start",
+    "typegen": "cd studio && npx npm typegen",
+    "types": "cd studio && npx npm types"
+  },
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-packagejson"
+    ],
+    "semi": false,
+    "singleQuote": true
+  },
+  "devDependencies": {
+    "prettier-plugin-packagejson": "2.4.14"
+  },
+  "packageManager": "pnpm@8.15.6"
+}

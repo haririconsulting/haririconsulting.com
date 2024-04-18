@@ -1,0 +1,10 @@
+{
+  "root": true,
+  "api": {
+    "projectId": "lzlb1qvf",
+    "dataset": "production"
+  },
+  "project": {
+    "name": "haririconsulting"
+  }
+}
