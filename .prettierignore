@@ -1,0 +1,6 @@
+node_modules
+**/node_modules
+frontend/build
+frontend/public
+backend/dist
+backend/.sanity

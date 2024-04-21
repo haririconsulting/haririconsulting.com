@@ -49,7 +49,7 @@ const siteInfo = defineType({
     },
     {
       name: 'bodyFont',
-      type: 'string',
+      type: 'fontInfo',
       description: (
         <div>
           The font for body text (descriptions and paragraphs). See{' '}
@@ -62,7 +62,7 @@ const siteInfo = defineType({
     },
     {
       name: 'headingFont',
-      type: 'string',
+      type: 'fontInfo',
       description: (
         <div>
           The font for headings. See{' '}
