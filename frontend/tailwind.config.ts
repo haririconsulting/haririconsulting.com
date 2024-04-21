@@ -12,10 +12,14 @@ export default {
         '-lg': { max: '1023px' },
         tall: { raw: '(min-height: 700px)' },
       },
+      colors: {
+        bg: 'var(--bg)',
+        fg: 'var(--fg)',
+        accent: 'var(--accent)',
+      },
       fontFamily: {
-        menu: 'Dosis',
-        serif: 'Cormorant Garamond',
-        sans: 'Asap',
+        serif: 'var(--body)',
+        sans: 'var(--heading)',
       },
       dropShadow: {
         text: '0 0 6px rgb(0, 0, 0)',

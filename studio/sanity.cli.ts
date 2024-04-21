@@ -1,10 +1,10 @@
 import {defineCliConfig} from 'sanity/cli'
-import {projectId, dataset} from './sanity.config'
+import settings from '../projectSettings'
 
 export default defineCliConfig({
   api: {
-    projectId,
-    dataset,
+    projectId: settings.projectId,
+    dataset: settings.database,
   },
   project: {
     basePath: '/admin',

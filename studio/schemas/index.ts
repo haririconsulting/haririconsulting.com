@@ -7,6 +7,7 @@ import services from './document/services'
 import titleSubtitle from './type/titleSubtitle'
 import siteInfo from './document/siteInfo'
 import buttonInfo from './type/buttonInfo'
+import fontInfo from './type/fontInfo'
 
 export const schemaTypes = [
   siteInfo,
@@ -18,4 +19,5 @@ export const schemaTypes = [
   assetInfo,
   titleSubtitle,
   buttonInfo,
+  fontInfo,
 ]

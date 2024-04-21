@@ -5,9 +5,7 @@ import {schemaTypes} from './schemas'
 import {presentationTool, DocumentLocationResolver} from 'sanity/presentation'
 import {Observable, map} from 'rxjs'
 import _ from 'lodash'
-
-export const projectId = 'lzlb1qvf'
-export const dataset = 'production'
+import settings from '../projectSettings'
 
 const locate: DocumentLocationResolver = (params, context) => {
   const {documentStore} = context
@@ -64,8 +62,8 @@ const structureOptions: StructureToolOptions = {
 export default defineConfig({
   name: 'haririconsulting',
   title: 'Hariri Consulting',
-  projectId,
-  dataset,
+  projectId: settings.projectId,
+  dataset: settings.database,
   plugins: [
     structureTool(structureOptions),
     presentationTool({

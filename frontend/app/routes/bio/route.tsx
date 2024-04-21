@@ -11,7 +11,7 @@ import Section from '~/components/Section'
 import ViewButton from '~/components/ViewButton'
 import { BASE_URL } from '~/constants'
 
-const BIO_QUERY = groq`*[_type == 'bio'][0] {
+const BIO_QUERY = groq`*[_type == 'about'][0] {
   ..., 
   'bioURL': cv.asset->url
 }`
@@ -23,8 +23,6 @@ export const loader = async () => {
 export default function Bio() {
   const { data: bio } = useLoaderData<typeof loader>()
   if (!bio) return <></>
-
-  console.log(bio)
 
   return (
     <Section>

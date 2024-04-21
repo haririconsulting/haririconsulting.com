@@ -6,8 +6,8 @@
     "dev": "pnpm -r dev",
     "format": "prettier --cache --write .",
     "start": "wrangler pages dev ./frontend/build/client",
-    "typegen": "cd studio && npx npm typegen",
-    "types": "cd studio && npx npm types"
+    "typegen": "cd studio && npm run typegen",
+    "types": "cd studio && npm run types"
   },
   "prettier": {
     "plugins": [
