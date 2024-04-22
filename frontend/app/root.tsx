@@ -13,7 +13,7 @@ import { client } from './sanity/client'
 import { loadQuery, setServerClient, useQuery } from '@sanity/react-loader'
 import { LinksFunction } from '@remix-run/cloudflare'
 import groq from 'groq'
-import { ROOT_QUERYResult } from './sanity/types'
+import { INFO_QUERYResult, ROOT_QUERYResult } from './sanity/types'
 
 export const links: LinksFunction = () => [
   {
@@ -29,10 +29,12 @@ export const loader = async () => {
   setServerClient(client)
   return await loadQuery<ROOT_QUERYResult>(ROOT_QUERY)
 }
-export function Layout({ children }: { children: React.ReactNode }) {
-  const { data } = useLoaderData<typeof loader>()
-  // const data = useQuery<ROOT_QUERYResult>(ROOT_QUERY, undefined, { initial })
+
+export default function App() {
+  const load = useLoaderData<typeof loader>()
+  const data = load?.data
   if (!data) return <></>
+
   const style = {
     '--bg': data.backgroundColor,
     '--fg': data.foregroundColor,
@@ -60,20 +62,20 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body className={``}>
-        <nav className="flex space-x-6 px-2 py-2 w-full h-[100px]">
-          <Link to="/">Site Title</Link>
+        <nav className="flex space-x-6 px-2 py-2 w-full h-topbar">
+          <Link to="/">{data.siteTitle}</Link>
           <div className="grow"></div>
-          <Link to="/portfolio">portfolio</Link>
-          <Link to="/bio">bio</Link>
+          <div className="relative group">
+            <Link to="/services">services</Link>
+            <div className="absolute top-full left-0 bg-bg border-fg"></div>
+          </div>
+          <Link to="/about">about</Link>
         </nav>
-        {children}
+
+        <Outlet />
         <ScrollRestoration />
         <Scripts />
       </body>
     </html>
   )
-}
-
-export default function App() {
-  return <Outlet />
 }

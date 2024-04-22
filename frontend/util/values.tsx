@@ -1,9 +1,5 @@
-import { RefObject, useEffect, useMemo, useRef, useState } from 'react'
+import { useRef } from 'react'
 import { scale } from './util'
-import WebRenderer from '@elemaudio/web-renderer'
-import _ from 'lodash'
-import invariant from 'tiny-invariant'
-import type p5 from 'p5'
 
 // export function useAnimate<T extends Record<string, any>>(
 //   setup: ({setup: (init: Partial<T>) => Partial<T>, dependencyKeys: string[]})[],

@@ -9,7 +9,7 @@ import { SanityImage } from 'sanity-image'
 import { useEffect, useState } from 'react'
 import Section from '~/components/Section'
 import ViewButton from '~/components/ViewButton'
-import { BASE_URL } from '~/constants'
+import { baseURL } from 'projectSettings'
 
 const BIO_QUERY = groq`*[_type == 'about'][0] {
   ..., 
@@ -30,7 +30,7 @@ export default function Bio() {
         <SanityImage
           // Pass the Sanity Image ID (`_id`) (e.g., `image-abcde12345-1200x800-jpg`)
           id={bio.headshot!.asset!._ref}
-          baseUrl={BASE_URL}
+          baseUrl={baseURL}
         />
       </div>
 

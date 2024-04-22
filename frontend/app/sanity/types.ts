@@ -272,6 +272,7 @@ export type SiteInfo = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  siteTitle?: string;
   inspiration?: string;
   backgroundColor?: string;
   foregroundColor?: string;
@@ -335,6 +336,7 @@ export type ROOT_QUERYResult = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  siteTitle?: string;
   inspiration?: string;
   backgroundColor?: string;
   foregroundColor?: string;
@@ -343,7 +345,14 @@ export type ROOT_QUERYResult = {
   headingFont?: FontInfo;
 } | null;
 
-// Source: ../frontend/app/routes/bio/route.tsx
+// Source: ../frontend/app/routes/_index.tsx
+// Variable: INFO_QUERY
+// Query: *[_type == 'about'][0]{slogan}
+export type INFO_QUERYResult = {
+  slogan: string | null;
+} | null;
+
+// Source: ../frontend/app/routes/about/route.tsx
 // Variable: BIO_QUERY
 // Query: *[_type == 'about'][0] {  ...,   'bioURL': cv.asset->url}
 export type BIO_QUERYResult = {
@@ -392,16 +401,150 @@ export type BIO_QUERYResult = {
   bioURL: string | null;
 } | null;
 
-// Source: ../frontend/app/routes/portfolio.$role/route.tsx
-// Variable: WORKS_QUERY
-// Query: *[_type == 'work' && type->slug.current == $role]{..., 'videoBannerURL': videoBanner.asset->url, 'imageBannerURL': imageBanner.asset->url}
-export type WORKS_QUERYResult = Array<never>;
-// Variable: ROLE_QUERY
-// Query: *[_type == 'category' && slug.current == $role][0]
-export type ROLE_QUERYResult = null;
-
-// Source: ../frontend/app/routes/portfolio.$role.$slug/route.tsx
+// Source: ../frontend/app/routes/services.$role.$slug/route.tsx
 // Variable: WORK_QUERY
-// Query: *[_type == "work" && slug.current == $slug][0]{..., 'imageBannerURL': imageBanner.asset->url, 'filePreviews': documentPreviews[]{..., 'fileSource': uploadSource.asset->}}
-export type WORK_QUERYResult = null;
+// Query: *[_type == "projects" && slug.current == $slug][0]{..., 'imageBannerURL': imageBanner.asset->url, 'filePreviews': documentPreviews[]{..., 'fileSource': uploadSource.asset->}}
+export type WORK_QUERYResult = {
+  _id: string;
+  _type: "projects";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  subtitle?: string;
+  slug?: Slug;
+  type?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "services";
+  };
+  releaseDate?: string;
+  description?: Description;
+  videoBanner?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+    };
+    _type: "file";
+  };
+  imageBanner?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    photoCredit?: string;
+    _type: "imageInfo";
+  };
+  documentPreviews?: Array<{
+    _key: string;
+  } & AssetInfo>;
+  imageBannerURL: string | null;
+  filePreviews: Array<{
+    _key: string;
+    fileSource: {
+      _id: string;
+      _type: "sanity.fileAsset";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      originalFilename?: string;
+      label?: string;
+      title?: string;
+      description?: string;
+      altText?: string;
+      sha1hash?: string;
+      extension?: string;
+      mimeType?: string;
+      size?: number;
+      assetId?: string;
+      uploadId?: string;
+      path?: string;
+      url?: string;
+      source?: SanityAssetSourceData;
+    } | null;
+  }> | null;
+} | null;
+
+// Source: ../frontend/app/routes/services.$role/route.tsx
+// Variable: WORKS_QUERY
+// Query: *[_type == 'projects' && type->slug.current == $role]{..., 'videoBannerURL': videoBanner.asset->url, 'imageBannerURL': imageBanner.asset->url}
+export type WORKS_QUERYResult = Array<{
+  _id: string;
+  _type: "projects";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  subtitle?: string;
+  slug?: Slug;
+  type?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "services";
+  };
+  releaseDate?: string;
+  description?: Description;
+  videoBanner?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+    };
+    _type: "file";
+  };
+  imageBanner?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    photoCredit?: string;
+    _type: "imageInfo";
+  };
+  documentPreviews?: Array<{
+    _key: string;
+  } & AssetInfo>;
+  videoBannerURL: string | null;
+  imageBannerURL: string | null;
+}>;
+// Variable: ROLE_QUERY
+// Query: *[_type == 'services' && slug.current == $role][0]
+export type ROLE_QUERYResult = {
+  _id: string;
+  _type: "services";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  description?: Description;
+} | null;
+
+// Source: ../frontend/app/routes/services._index/route.tsx
+// Variable: SERVICES_QUERY
+// Query: *[_type == 'services']
+export type SERVICES_QUERYResult = Array<{
+  _id: string;
+  _type: "services";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  description?: Description;
+}>;
 

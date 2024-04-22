@@ -6,10 +6,9 @@ import groq from 'groq'
 import { SanityImage } from 'sanity-image'
 import invariant from 'tiny-invariant'
 import ViewButton from '~/components/ViewButton'
-import { BASE_URL } from '~/constants'
 import { AssetInfo, WORKS_QUERYResult, WORK_QUERYResult } from '~/sanity/types'
 
-const WORK_QUERY = groq`*[_type == "work" && slug.current == $slug][0]{..., 'imageBannerURL': imageBanner.asset->url, 'filePreviews': documentPreviews[]{..., 'fileSource': uploadSource.asset->}}`
+const WORK_QUERY = groq`*[_type == "projects" && slug.current == $slug][0]{..., 'imageBannerURL': imageBanner.asset->url, 'filePreviews': documentPreviews[]{..., 'fileSource': uploadSource.asset->}}`
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const initial = await loadQuery<WORK_QUERYResult>(WORK_QUERY, params)

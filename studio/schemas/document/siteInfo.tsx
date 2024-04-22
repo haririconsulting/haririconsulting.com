@@ -5,6 +5,10 @@ const siteInfo = defineType({
   type: 'document',
   fields: [
     {
+      name: 'siteTitle',
+      type: 'string',
+    },
+    {
       name: 'inspiration',
       type: 'text',
       description:

@@ -18,11 +18,15 @@ export default {
         accent: 'var(--accent)',
       },
       fontFamily: {
-        serif: 'var(--body)',
-        sans: 'var(--heading)',
+        body: 'var(--body)',
+        heading: 'var(--heading)',
       },
       dropShadow: {
         text: '0 0 6px rgb(0, 0, 0)',
+      },
+      height: {
+        topbar: '100px',
+        toppanel: 'calc(100vh - 100px)',
       },
     },
   },

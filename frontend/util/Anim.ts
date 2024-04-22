@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 export const useAnimation = <Props extends Record<string, any>>(
   initialize: boolean,
@@ -16,8 +16,11 @@ export const useAnimation = <Props extends Record<string, any>>(
   const props = useRef<Props>({} as Props)
   const [started, setStarted] = useState(false)
 
+  const drawMemo = useCallback(draw, [])
+  const initMemo = useCallback(init, [])
+
   const start = async () => {
-    const newProps = await init()
+    const newProps = await initMemo()
     props.current = newProps
     setStarted(true)
   }
@@ -46,16 +49,17 @@ export const useAnimation = <Props extends Record<string, any>>(
   }
 
   useEffect(() => {
-    if (!started) return
-    let time = 0
     let frameCounter: number
+    let time = 0
     const animationFrame: FrameRequestCallback = (timeDelta) => {
       time += timeDelta / 1000
-      const newProps = draw({ time, timeDelta }, props.current)
+      const newProps = drawMemo({ time, timeDelta }, props.current)
       updateProps(newProps)
       frameCounter = requestAnimationFrame(animationFrame)
     }
-    frameCounter = requestAnimationFrame(animationFrame)
+    if (started) {
+      frameCounter = requestAnimationFrame(animationFrame)
+    }
     return () => {
       frameCounter && cancelAnimationFrame(frameCounter)
     }

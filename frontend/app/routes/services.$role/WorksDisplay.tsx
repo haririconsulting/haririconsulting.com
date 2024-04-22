@@ -1,17 +1,12 @@
 import { Link, useParams, useSearchParams } from '@remix-run/react'
-import _ from 'lodash'
-import matter from 'matter-js'
-import { Pt, Vec } from 'pts'
-import { cloneElement, useEffect, useRef, useState } from 'react'
-import { ClientOnly } from 'remix-utils/client-only'
-import invariant from 'tiny-invariant'
-import { WORKS_QUERYResult } from '~/sanity/types'
-import { generateId } from '~/util/dom'
-import { lerp, useDimensions } from '~/util/hooks'
-import { probLog, scale, useEventListener } from '@util/util'
+import { useEventListener } from '@util/util'
 import anime from 'animejs'
+import { baseURL } from 'projectSettings'
+import { Pt } from 'pts'
+import { useEffect, useRef, useState } from 'react'
+import { ClientOnly } from 'remix-utils/client-only'
 import { SanityImage } from 'sanity-image'
-import { BASE_URL } from '~/constants'
+import { WORKS_QUERYResult } from '~/sanity/types'
 
 export default function WorksDisplay(
   props: Parameters<typeof WorksDisplayClient>[0],
@@ -116,6 +111,8 @@ function Bubble({
     })
   }, [work])
 
+  const generateId = (work: any) => work.slug
+
   return (
     <div
       ref={frame}
@@ -153,7 +150,7 @@ function Bubble({
         ) : (
           <SanityImage
             id={work.imageBanner!.asset!._ref}
-            baseUrl={BASE_URL}
+            baseUrl={baseURL}
             className="w-full h-full object-cover"
           />
         )}

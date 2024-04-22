@@ -1505,6 +1505,13 @@
           "type": "string"
         }
       },
+      "siteTitle": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "inspiration": {
         "type": "objectAttribute",
         "value": {

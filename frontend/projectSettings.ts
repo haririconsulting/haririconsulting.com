@@ -4,3 +4,4 @@ const projectSettings = {
   previewURL: 'http://localhost:3000',
 }
 export default projectSettings
+export const baseURL = `https://cdn.sanity.io/images/${projectSettings.projectId}/${projectSettings.database}/`
