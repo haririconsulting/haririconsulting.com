@@ -1,4 +1,5 @@
 import {defineType} from 'sanity'
+import StringGenerator from '../../components/generator'
 
 const about = defineType({
   name: 'about',
@@ -10,6 +11,7 @@ const about = defineType({
       name: 'bio',
       type: 'description',
       validation: (rule) => rule.required(),
+      description: <StringGenerator length={500} />,
     },
     {
       name: 'headshot',

@@ -11,22 +11,18 @@ export default function Cover() {
     const path = frameRef.current!.querySelector('#leafCurve')!
 
     const p = new p5((p: p5) => {
-      p.createCanvas(
-        canvasRef.current.width,
-        canvasRef.current.height,
-        p.WEBGL,
-        canvasRef.current,
-      )
+      const { height, width } = frameRef.current.getBoundingClientRect()
+      p.createCanvas(width, height, p.WEBGL, canvasRef.current)
       let x = -p.width / 2,
         y = -p.height / 2
       p.colorMode(p.HSL, 1)
-      p.strokeWeight(0.5)
+      p.strokeWeight(1)
       p.background(40 / 360, 0.55, 0.91)
 
-      const SIZE = 2
+      const SIZE = 4
       const VARIATION = 1
-      p.stroke(40 / 360, 0.55, 0.91 + p.random(-0.1))
       while (x < p.width / 2) {
+        p.stroke(40 / 360, 0.55, 0.87 + p.random(-0.05))
         x += SIZE
 
         // p.stroke(244 / 256, 237 / 256, 223 / 256 + p.random(-0.1, 0.1))
@@ -38,6 +34,7 @@ export default function Cover() {
         )
       }
       while (y < p.height / 2) {
+        p.stroke(40 / 360, 0.55, 0.87 + p.random(-0.05))
         y += SIZE
         // p.stroke(244 / 256, 237 / 256, 223 / 256 + p.random(-0.1, 0.1))
         p.line(
@@ -90,19 +87,6 @@ export default function Cover() {
         ref={canvasRef}
         className="absolute top-0 left-0 !h-full !w-full"
       ></canvas>
-      <svg
-        viewBox="0,0,1,1"
-        width="100%"
-        height="100%"
-        className="absolute top-0 left-0 h-full w-full"
-      >
-        <path
-          id="leafCurve"
-          fill="transparent"
-          stroke="black"
-          strokeWidth={1 / window.innerHeight}
-        ></path>
-      </svg>
     </div>
   )
 }

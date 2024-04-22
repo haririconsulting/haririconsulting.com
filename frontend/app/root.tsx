@@ -37,11 +37,15 @@ export default function App() {
 
   const style = {
     '--bg': data.backgroundColor,
+    '--bg2': data.backgroundAltColor,
     '--fg': data.foregroundColor,
     '--accent': data.accentColor,
+    '--accent2': data.accentAltColor,
     '--body': data.bodyFont?.name,
     '--heading': data.headingFont?.name,
+    '--topbar': '60px',
   }
+
   return (
     <html
       lang="en"
@@ -62,7 +66,7 @@ export default function App() {
         <Links />
       </head>
       <body className={``}>
-        <nav className="flex space-x-6 px-2 py-2 w-full h-topbar">
+        <nav className="absolute top-0 left-0 flex space-x-6 px-2 py-2 w-full h-topbar z-10 font-heading">
           <Link to="/">{data.siteTitle}</Link>
           <div className="grow"></div>
           <div className="relative group">

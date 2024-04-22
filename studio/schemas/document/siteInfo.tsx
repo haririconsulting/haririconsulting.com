@@ -27,6 +27,18 @@ const siteInfo = defineType({
       ),
     },
     {
+      name: 'backgroundAltColor',
+      type: 'string',
+      description: (
+        <div>
+          The alternate background color of your site. Copy the "Hex" from a color-picker such as{' '}
+          <a href="https://htmlcolorcodes.com/color-picker/" target="_blank">
+            this one
+          </a>
+        </div>
+      ),
+    },
+    {
       name: 'foregroundColor',
       type: 'string',
       description: (
@@ -45,6 +57,19 @@ const siteInfo = defineType({
         <div>
           The accent color of your site, used for buttons and things that stand out. Copy the "Hex"
           from a color-picker such as{' '}
+          <a href="https://htmlcolorcodes.com/color-picker/" target="_blank">
+            this one
+          </a>
+        </div>
+      ),
+    },
+    {
+      name: 'accentAltColor',
+      type: 'string',
+      description: (
+        <div>
+          The alternate accent color of your site, used for alternate backgrounds and borders. Copy
+          the "Hex" from a color-picker such as{' '}
           <a href="https://htmlcolorcodes.com/color-picker/" target="_blank">
             this one
           </a>

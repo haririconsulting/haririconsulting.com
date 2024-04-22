@@ -6,10 +6,12 @@ import groq from 'groq'
 import invariant from 'tiny-invariant'
 import { BIO_QUERYResult } from '~/sanity/types'
 import { SanityImage } from 'sanity-image'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Section from '~/components/Section'
 import ViewButton from '~/components/ViewButton'
 import { baseURL } from 'projectSettings'
+import Banner from '~/components/Banner'
+import LazyCover from '~/components/LazyCover'
 
 const BIO_QUERY = groq`*[_type == 'about'][0] {
   ..., 
@@ -25,17 +27,42 @@ export default function Bio() {
   if (!bio) return <></>
 
   return (
-    <Section>
-      <div className="w-[50%] max-w-[300px] float-left mr-4 mb-4">
-        <SanityImage
-          // Pass the Sanity Image ID (`_id`) (e.g., `image-abcde12345-1200x800-jpg`)
-          id={bio.headshot!.asset!._ref}
-          baseUrl={baseURL}
-        />
-      </div>
+    <>
+      <Banner background={<LazyCover />}>
+        <h1 className="text-center text-h1 pb-4">About Us</h1>
+      </Banner>
+      <section className="relative">
+        <div className="absolute top-0 left-0 bg-accent2 w-full h-[calc(100%-72px)]"></div>
+        <div className="bg-bg2 p-8 rounded-lg max-w-2xl mx-auto relative -top-8">
+          <h2 className="text-center text-h3 leading-h3 pb-4">
+            What Guides Us
+          </h2>
+          <div className="md:flex md:space-x-4">
+            {bio.guidingPrinciples?.map((principle) => {
+              return (
+                <div>
+                  <h3 className="text-xl">{principle.title}</h3>
+                  <p className="text-sm">{principle.description}</p>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+      <Section className="py-4">
+        <div className="max-w-[300px] w-1/3 aspect-square float-right ml-8 mb-4">
+          <SanityImage
+            className="w-full aspect-[3/4] rounded-xl"
+            // Pass the Sanity Image ID (`_id`) (e.g., `image-abcde12345-1200x800-jpg`)
+            id={bio.headshot!.asset!._ref}
+            baseUrl={baseURL}
+          />
+        </div>
+        <h2 className="text-h3 pb-4">About Maryam Hariri</h2>
+        <PortableText value={bio.bio!} />
 
-      <PortableText value={bio.bio!} />
-      {bio.cv && <ViewButton href={bio.bioURL!}>CV</ViewButton>}
-    </Section>
+        {bio.cv && <ViewButton href={bio.bioURL!}>CV</ViewButton>}
+      </Section>
+    </>
   )
 }

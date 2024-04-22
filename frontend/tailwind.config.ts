@@ -12,10 +12,21 @@ export default {
         '-lg': { max: '1023px' },
         tall: { raw: '(min-height: 700px)' },
       },
+      fontSize: {
+        h1: '3rem',
+        h2: '2.5rem',
+        h3: '2rem',
+        h4: '1.5rem',
+      },
+      lineHeight: {
+        h: '1.5em',
+      },
       colors: {
         bg: 'var(--bg)',
+        bg2: 'var(--bg2)',
         fg: 'var(--fg)',
         accent: 'var(--accent)',
+        accent2: 'var(--accent2)',
       },
       fontFamily: {
         body: 'var(--body)',
@@ -25,8 +36,8 @@ export default {
         text: '0 0 6px rgb(0, 0, 0)',
       },
       height: {
-        topbar: '100px',
-        toppanel: 'calc(100vh - 100px)',
+        topbar: 'var(--topbar)',
+        toppanel: 'calc(100vh - var(--topbar))',
       },
     },
   },

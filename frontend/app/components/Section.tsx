@@ -13,14 +13,16 @@ export default function Section({
   columns?: boolean
 }) {
   return (
-    <div
-      className={`w-full my-2 flex-none space-y-2 px-8 leading-6 ${
-        !fullWidth ? 'mx-auto max-w-4xl' : ''
-      } ${className ?? ''}`}
-    >
-      {title && <h2 className='text-center text-3xl font-bold'>{title}</h2>}
-      <div className={`${columns ? 'flex' : ''} ${innerClassName}`}>
-        {children}
+    <div className={`${className ?? ''} w-full`}>
+      <div
+        className={`w-full my-2 flex-none space-y-2 px-8 leading-6 ${
+          !fullWidth ? 'mx-auto max-w-4xl' : ''
+        }`}
+      >
+        {title && <h2 className="text-center text-3xl font-bold">{title}</h2>}
+        <div className={`${columns ? 'flex' : ''} ${innerClassName}`}>
+          {children}
+        </div>
       </div>
     </div>
   )

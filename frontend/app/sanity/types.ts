@@ -275,8 +275,10 @@ export type SiteInfo = {
   siteTitle?: string;
   inspiration?: string;
   backgroundColor?: string;
+  backgroundAltColor?: string;
   foregroundColor?: string;
   accentColor?: string;
+  accentAltColor?: string;
   bodyFont?: FontInfo;
   headingFont?: FontInfo;
 };
@@ -339,13 +341,15 @@ export type ROOT_QUERYResult = {
   siteTitle?: string;
   inspiration?: string;
   backgroundColor?: string;
+  backgroundAltColor?: string;
   foregroundColor?: string;
   accentColor?: string;
+  accentAltColor?: string;
   bodyFont?: FontInfo;
   headingFont?: FontInfo;
 } | null;
 
-// Source: ../frontend/app/routes/_index.tsx
+// Source: ../frontend/app/routes/_index/route.tsx
 // Variable: INFO_QUERY
 // Query: *[_type == 'about'][0]{slogan}
 export type INFO_QUERYResult = {
@@ -399,6 +403,67 @@ export type BIO_QUERYResult = {
   contactInfo?: ButtonInfo;
   calendarInfo?: ButtonInfo;
   bioURL: string | null;
+} | null;
+
+// Source: ../frontend/app/routes/services.$role/route.tsx
+// Variable: WORKS_QUERY
+// Query: *[_type == 'projects' && type->slug.current == $role]{..., 'videoBannerURL': videoBanner.asset->url, 'imageBannerURL': imageBanner.asset->url}
+export type WORKS_QUERYResult = Array<{
+  _id: string;
+  _type: "projects";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  subtitle?: string;
+  slug?: Slug;
+  type?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "services";
+  };
+  releaseDate?: string;
+  description?: Description;
+  videoBanner?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+    };
+    _type: "file";
+  };
+  imageBanner?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    photoCredit?: string;
+    _type: "imageInfo";
+  };
+  documentPreviews?: Array<{
+    _key: string;
+  } & AssetInfo>;
+  videoBannerURL: string | null;
+  imageBannerURL: string | null;
+}>;
+// Variable: ROLE_QUERY
+// Query: *[_type == 'services' && slug.current == $role][0]
+export type ROLE_QUERYResult = {
+  _id: string;
+  _type: "services";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  description?: Description;
 } | null;
 
 // Source: ../frontend/app/routes/services.$role.$slug/route.tsx
@@ -471,67 +536,6 @@ export type WORK_QUERYResult = {
       source?: SanityAssetSourceData;
     } | null;
   }> | null;
-} | null;
-
-// Source: ../frontend/app/routes/services.$role/route.tsx
-// Variable: WORKS_QUERY
-// Query: *[_type == 'projects' && type->slug.current == $role]{..., 'videoBannerURL': videoBanner.asset->url, 'imageBannerURL': imageBanner.asset->url}
-export type WORKS_QUERYResult = Array<{
-  _id: string;
-  _type: "projects";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  subtitle?: string;
-  slug?: Slug;
-  type?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "services";
-  };
-  releaseDate?: string;
-  description?: Description;
-  videoBanner?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
-    };
-    _type: "file";
-  };
-  imageBanner?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    photoCredit?: string;
-    _type: "imageInfo";
-  };
-  documentPreviews?: Array<{
-    _key: string;
-  } & AssetInfo>;
-  videoBannerURL: string | null;
-  imageBannerURL: string | null;
-}>;
-// Variable: ROLE_QUERY
-// Query: *[_type == 'services' && slug.current == $role][0]
-export type ROLE_QUERYResult = {
-  _id: string;
-  _type: "services";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  description?: Description;
 } | null;
 
 // Source: ../frontend/app/routes/services._index/route.tsx
