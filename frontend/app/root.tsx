@@ -66,7 +66,7 @@ export default function App() {
         <Links />
       </head>
       <body className={``}>
-        <nav className="absolute top-0 left-0 flex space-x-6 px-2 py-2 w-full h-topbar z-10 font-heading">
+        <nav className="absolute top-0 left-0 flex space-x-6 px-2 py-2 w-full h-topbar font-heading items-center z-20 bg-bg">
           <Link to="/">{data.siteTitle}</Link>
           <div className="grow"></div>
           <div className="relative group">
@@ -74,9 +74,14 @@ export default function App() {
             <div className="absolute top-full left-0 bg-bg border-fg"></div>
           </div>
           <Link to="/about">about</Link>
+          <Link to="/work">work</Link>
+          <button className="bg-accent px-2 py-1 rounded-lg text-bg">
+            Contact Us
+          </button>
         </nav>
 
         <Outlet />
+
         <ScrollRestoration />
         <Scripts />
       </body>

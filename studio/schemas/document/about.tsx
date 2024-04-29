@@ -1,4 +1,4 @@
-import {defineType} from 'sanity'
+import {defineArrayMember, defineType} from 'sanity'
 import StringGenerator from '../../components/generator'
 
 const about = defineType({
@@ -35,6 +35,21 @@ const about = defineType({
       name: 'cv',
       type: 'file',
       options: {accept: 'application/pdf'},
+    },
+    {
+      name: 'team',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'teamMember',
+          fields: [
+            {type: 'string', name: 'name'},
+            {type: 'description', name: 'bio'},
+            {name: 'headshot', type: 'imageInfo'},
+          ],
+        }),
+      ],
     },
     {
       name: 'resume',

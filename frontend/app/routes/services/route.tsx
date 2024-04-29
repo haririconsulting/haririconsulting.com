@@ -7,8 +7,8 @@ import {
 } from '@remix-run/react'
 import { Pt } from 'pts'
 import { useMemo } from 'react'
-import { useAnimation } from '@util/Anim'
-import { useEventListener } from '@util/util'
+import { useAnimation } from '@util/animation'
+import { useEventListener } from '@util/dom'
 import groq from 'groq'
 import { loadQuery } from '@sanity/react-loader'
 import { SERVICES_QUERYResult } from '~/sanity/types'
@@ -17,25 +17,7 @@ import Section from '~/components/Section'
 import Banner from '~/components/Banner'
 import LazyCover from '~/components/LazyCover'
 import _ from 'lodash'
-
-function Blob({ to, order }: { to: string; order: number }) {
-  const position = useMemo(
-    () => new Pt(0, -0.25).rotate2D((order / 3) * Math.PI * 2),
-    [],
-  )
-  const { role } = useParams()
-
-  const props = useAnimation(
-    true,
-    () => ({
-      currentPosition: position,
-    }),
-    () => {},
-  )
-  useEventListener('mousemove', (ev) => {})
-
-  return <Link to={to}>{to}</Link>
-}
+import Footer from '~/components/Footer'
 
 const SERVICES_QUERY = groq`*[_type == 'services']`
 export const loader = async () => {
@@ -88,7 +70,7 @@ export default function Portfolio() {
           </Section>
         ))}
       </div>
-      <Outlet />
+      <Footer />
     </>
   )
 }

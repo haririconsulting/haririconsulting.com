@@ -1,5 +1,6 @@
 import {defineCliConfig} from 'sanity/cli'
 import settings from '../projectSettings'
+import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineCliConfig({
   api: {
@@ -8,5 +9,8 @@ export default defineCliConfig({
   },
   project: {
     basePath: '/admin',
+  },
+  vite: {
+    plugins: [tsconfigPaths()],
   },
 })

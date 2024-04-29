@@ -1,4 +1,4 @@
-import {generateRandomString} from '../../frontend/util/text'
+import {generateRandomString} from '@util/text'
 
 export default function StringGenerator({length}: {length: number}) {
   return (

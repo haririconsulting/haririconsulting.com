@@ -15,7 +15,7 @@
   h4,
   h5,
   h6 {
-    @apply leading-h;
+    @apply leading-h font-heading;
   }
 }
 

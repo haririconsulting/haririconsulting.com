@@ -14,7 +14,10 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "paths": {
+      "@util/*": ["../util/src/*"]
+    }
   },
   "includes": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist"]

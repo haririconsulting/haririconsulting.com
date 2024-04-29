@@ -1,5 +1,5 @@
 import { pointsToBezier, subdivideLine } from '@util/svg'
-import { Pt } from 'pts'
+import { Color, Pt } from 'pts'
 import { useEffect, useRef } from 'react'
 import p5 from 'p5'
 
@@ -17,14 +17,21 @@ export default function Cover() {
         y = -p.height / 2
       p.colorMode(p.HSL, 1)
       p.strokeWeight(1)
-      p.background(40 / 360, 0.55, 0.91)
+      p.background('var(--bg)')
 
       const SIZE = 4
       const VARIATION = 1
-      while (x < p.width / 2) {
-        p.stroke(40 / 360, 0.55, 0.87 + p.random(-0.05))
-        x += SIZE
+      console.log(document.documentElement.getAttribute('style'))
 
+      // p.stroke(strokeColor.toString())
+      const accentStroke = document.documentElement
+        .getAttribute('style')!
+        .match(/--bg2:(#([\w|\d]+))/)![1]
+      while (x < p.width / 2) {
+        const strokeColor = Color.fromHex(accentStroke)
+        strokeColor.l = strokeColor.l + p.random(-0.05 * 255)
+        x += SIZE
+        p.stroke(strokeColor.hex)
         // p.stroke(244 / 256, 237 / 256, 223 / 256 + p.random(-0.1, 0.1))
         p.line(
           x + p.random(-VARIATION, VARIATION),
@@ -34,7 +41,9 @@ export default function Cover() {
         )
       }
       while (y < p.height / 2) {
-        p.stroke(40 / 360, 0.55, 0.87 + p.random(-0.05))
+        const strokeColor = Color.fromHex(accentStroke)
+        strokeColor.l = strokeColor.l + p.random(-0.05 * 255)
+        p.stroke(strokeColor.hex)
         y += SIZE
         // p.stroke(244 / 256, 237 / 256, 223 / 256 + p.random(-0.1, 0.1))
         p.line(
