@@ -6,6 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
+  useParams,
 } from '@remix-run/react'
 import styles from './index.css?url'
 import { lazy, useEffect } from 'react'
@@ -46,6 +47,8 @@ export default function App() {
     '--topbar': '60px',
   }
 
+  const { project } = useParams()
+
   return (
     <html
       lang="en"
@@ -66,7 +69,9 @@ export default function App() {
         <Links />
       </head>
       <body className={``}>
-        <nav className="absolute top-0 left-0 flex space-x-6 px-2 py-2 w-full h-topbar font-heading items-center z-20 bg-bg">
+        <nav
+          className={`absolute top-0 left-0 flex space-x-6 px-2 py-2 w-full h-topbar font-heading items-center z-20 ${project ? 'bg-bg' : ''}`}
+        >
           <Link to="/">{data.siteTitle}</Link>
           <div className="grow"></div>
           <div className="relative group">

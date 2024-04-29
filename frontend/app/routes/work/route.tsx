@@ -23,7 +23,7 @@ export default function Work() {
             <Link
               to={work.slug!.current!}
               key={work._id}
-              className={`lg:w-1/2 md:w-1/4 w-full tall:h-[50vh] h-full p-6 ${i % 3 ? 'bg-bg' : 'bg-bg2'} flex flex-col border border-accent2 transition-colors duration-200 hover:bg-accent`}
+              className={`lg:w-1/2 md:w-1/4 w-full sm:h-[50vh] h-toppanel-1/2 p-6 ${i % 3 ? 'bg-bg' : 'bg-bg2'} flex flex-col border border-accent2 transition-colors duration-200 hover:bg-accent`}
               // style={{ background: `url(${work.imageBanner.asset})` }}
             >
               <h2 className="text-h3 pb-8">{work.title}</h2>

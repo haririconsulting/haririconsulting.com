@@ -38,6 +38,7 @@ export default {
       height: {
         topbar: 'var(--topbar)',
         toppanel: 'calc(100vh - var(--topbar))',
+        'toppanel-1/2': 'calc(50vh - var(--topbar) / 2)',
       },
     },
   },
